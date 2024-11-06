@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/CrystalPay
+    url: jdbc:postgresql://localhost:5432/CrystalPay?currentSchema=public
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -16,4 +16,4 @@ spring:
 
 springdoc:
   swagger-ui:
-        enabled: true
+    enabled: true

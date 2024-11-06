@@ -14,10 +14,16 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(schema = "ums")
-public class Permission {
+public class UserPermission {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID PermissionID;
-    private String PermissionName;
-    private String Description;
+    private UUID rolePermissionID;
+
+    @ManyToOne
+    @JoinColumn(name = "UserID", referencedColumnName = "UserID")
+    private Users users;
+
+    @ManyToOne
+    @JoinColumn(name = "PermissionID", referencedColumnName = "PermissionID")
+    private Permission permission;
 }

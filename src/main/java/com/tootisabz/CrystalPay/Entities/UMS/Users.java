@@ -1,9 +1,10 @@
 package com.tootisabz.CrystalPay.Entities.UMS;
 
 import com.tootisabz.CrystalPay.Entities.AuditableEntity;
+import com.tootisabz.CrystalPay.Entities.CrystalPay.*;
+import com.tootisabz.CrystalPay.Entities.Lookups.Currencies;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.IndexColumn;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -38,8 +39,70 @@ public class Users extends AuditableEntity implements UserDetails {
     private String Password;
     private String PhotoPath;
     private boolean IsEnabled;
-    @Column(nullable = true)
-    private byte[] BiometricData;
+
+    @OneToMany(mappedBy = "issuerUser")
+    private List<Transaction> IssuedTransactions;
+
+    @OneToMany(mappedBy = "acquirerUser")
+    private List<Transaction> AcquiredTransactions;
+
+    @OneToMany
+    @JoinColumn(name = "UserID", referencedColumnName = "UserID")
+    private List<KYC> KYC;
+
+    @OneToMany
+    @JoinColumn(name = "UserID", referencedColumnName = "UserID")
+    private List<Notification> Notifications;
+
+    @OneToMany
+    @JoinColumn(name = "UserID", referencedColumnName = "UserID")
+    private List<NFCTransactions> NFCTransactions;
+
+    @OneToMany
+    @JoinColumn(name = "UserID", referencedColumnName = "UserID")
+    private List<Token> Tokens;
+
+    @OneToMany
+    @JoinColumn(name = "UserID", referencedColumnName = "UserID")
+    private List<AuditLog> AuditLogs;
+
+    @OneToMany
+    @JoinColumn(name = "UserID", referencedColumnName = "UserID")
+    private List<PaymentMethod> PaymentMethods;
+
+    @OneToMany
+    @JoinColumn(name = "UserID", referencedColumnName = "UserID")
+    private List<WalletAccount> WalletAccounts;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_currencies",
+            joinColumns = @JoinColumn(name = "userid"),
+            inverseJoinColumns = @JoinColumn(name = "CurrencyID")
+    )
+    private Set<Currencies> Currencies;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_permission",
+            joinColumns = @JoinColumn(name = "userid"),
+            inverseJoinColumns = @JoinColumn(name = "PermissionID")
+    )
+    private Set<Permission> Permissions;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "userid"),
+            inverseJoinColumns = @JoinColumn(name = "roleid")
+    )
+    private Set<Role> Roles;
+
+    @Lob
+    @Column(name = "biometric_data", columnDefinition = "bytea")
+    private Object BiometricData;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

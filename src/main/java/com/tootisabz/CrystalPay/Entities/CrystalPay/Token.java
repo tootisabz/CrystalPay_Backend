@@ -1,4 +1,4 @@
-package com.tootisabz.CrystalPay.Entities.UMS;
+package com.tootisabz.CrystalPay.Entities.CrystalPay;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -13,11 +14,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "ums")
-public class Permission {
+@Table(schema = "project")
+public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID PermissionID;
-    private String PermissionName;
-    private String Description;
+    private UUID TokenID;
+    private UUID UserID;
+    private String TokenValue;
+    private LocalDateTime CreatedAt;
+    private LocalDateTime ExpiresAt;
 }

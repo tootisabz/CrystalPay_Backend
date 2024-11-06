@@ -1,4 +1,4 @@
-package com.tootisabz.CrystalPay.Entities.UMS;
+package com.tootisabz.CrystalPay.Entities.Lookups;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,11 +13,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "ums")
-public class Permission {
+@Table(schema = "lookup")
+public class Currencies {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID PermissionID;
-    private String PermissionName;
-    private String Description;
+    private UUID CurrencyID;
+    private String CurrencyName;
+    private String CurrencySymbol;
+    private String CurrencyCode;
+    private String CurrencyNumericCode;
+
 }

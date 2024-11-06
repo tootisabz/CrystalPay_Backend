@@ -1,23 +1,22 @@
 package com.tootisabz.CrystalPay.Entities.UMS;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.Date;
 import java.util.UUID;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(schema = "ums")
-public class Permission {
+public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID PermissionID;
-    private String PermissionName;
-    private String Description;
+    private UUID NotificationID;
+    private UUID UserID;
+    private String Message;
+    private Date NotificationDate;
+    private String Status;
 }
