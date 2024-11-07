@@ -15,10 +15,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(schema = "project")
-public class Token {
+public class Tokenization {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID TokenID;
+    private UUID TokenizationID;
     private UUID UserID;
     private String TokenValue;
     private LocalDateTime CreatedAt;

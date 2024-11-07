@@ -1,7 +1,6 @@
 package com.tootisabz.CrystalPay.Entities.CrystalPay;
 
 import com.tootisabz.CrystalPay.Common.Enums.FinTechTransactionStatus;
-import com.tootisabz.CrystalPay.Common.Enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +33,7 @@ public class NFCTransactions {
     private Transaction Transaction;
 
     @ManyToOne
-    @JoinColumn(name = "TokenID", referencedColumnName = "TokenID")
-    private Token Token;
+    @JoinColumn(name = "TokenizationID", referencedColumnName = "TokenizationID")
+    private Tokenization Tokenization;
 
 }

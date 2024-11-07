@@ -15,19 +15,23 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(schema = "project")
-public class PaymentMethod {
+public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID PaymentMethodID;
+    private UUID CardID;
     private UUID UserID;
+//    private UUID BankID;
     private String MethodType;
     private String Provider;
     private String AccountNumber;
 
+    @ManyToOne
+    @JoinColumn(name = "BankID", referencedColumnName = "BankID")
+    private Bank Bank;
     @OneToMany
-    @JoinColumn(name = "FromPaymentMethodID",referencedColumnName = "PaymentMethodID")
+    @JoinColumn(name = "FromCardID",referencedColumnName = "CardID")
     private List<Transaction> IssuedTransactions;
     @OneToMany
-    @JoinColumn(name = "ToPaymentMethodID",referencedColumnName = "PaymentMethodID")
+    @JoinColumn(name = "ToCardID",referencedColumnName = "CardID")
     private List<Transaction> AcquiredTransactions;
 }

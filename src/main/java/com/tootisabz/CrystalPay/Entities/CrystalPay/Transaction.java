@@ -28,13 +28,13 @@ public class Transaction {
 //    private UUID AcquirerUserID;
     private UUID FromWalletAccountID;
     private UUID ToWalletAccountID;
-    private UUID FromPaymentMethodID;
-    private UUID ToPaymentMethodID;
+    private UUID FromCardID;
+    private UUID ToCardID;
     private double Amount;
     private double DeductedFeeAmount;
     private String CurrencyCode;
     private TransactionType TransactionType;
-    private FinTechTransactionStatus Status;
+    private FinTechTransactionStatus StatusCode;
     private LocalDateTime TransactionDate;
     private String Description;
     @ManyToOne
@@ -42,12 +42,12 @@ public class Transaction {
     private FinancialInstitution financialInstitution;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "IssuerUserID", referencedColumnName = "UserID")
-    private Users issuerUser;
+    @JoinColumn(name = "SenderUserID", referencedColumnName = "UserID")
+    private Users SenderUser;
 
     @ManyToOne
-    @JoinColumn(name = "AcquirerUserID", referencedColumnName = "UserID")
-    private Users acquirerUser;
+    @JoinColumn(name = "ReceiverUserID", referencedColumnName = "UserID")
+    private Users ReceiverUser;
 
     @OneToMany
     @JoinColumn(name = "TransactionID", referencedColumnName = "TransactionID")

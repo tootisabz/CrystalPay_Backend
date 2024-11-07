@@ -40,10 +40,10 @@ public class Users extends AuditableEntity implements UserDetails {
     private String PhotoPath;
     private boolean IsEnabled;
 
-    @OneToMany(mappedBy = "issuerUser")
+    @OneToMany(mappedBy = "SenderUser")
     private List<Transaction> IssuedTransactions;
 
-    @OneToMany(mappedBy = "acquirerUser")
+    @OneToMany(mappedBy = "ReceiverUser")
     private List<Transaction> AcquiredTransactions;
 
     @OneToMany
@@ -60,7 +60,7 @@ public class Users extends AuditableEntity implements UserDetails {
 
     @OneToMany
     @JoinColumn(name = "UserID", referencedColumnName = "UserID")
-    private List<Token> Tokens;
+    private List<Tokenization> tokenizations;
 
     @OneToMany
     @JoinColumn(name = "UserID", referencedColumnName = "UserID")
@@ -68,7 +68,7 @@ public class Users extends AuditableEntity implements UserDetails {
 
     @OneToMany
     @JoinColumn(name = "UserID", referencedColumnName = "UserID")
-    private List<PaymentMethod> PaymentMethods;
+    private List<Card> cards;
 
     @OneToMany
     @JoinColumn(name = "UserID", referencedColumnName = "UserID")
